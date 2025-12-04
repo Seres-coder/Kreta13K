@@ -6,7 +6,17 @@ namespace Kreta.Persisence
 {
     public class KretaDbContext : DbContext
     {
+        public DbSet<User> Useres { get; set; }
+        public DbSet<Tanar> Tanarok { get; set; }
+        public DbSet<Diak> Diakok { get; set; }
+        public DbSet<Tantargy> Tantargyok { get; set; }
+        public DbSet<Uzenet> Uzenetek { get; set; }
+        public DbSet<Jegy> Jegyek { get; set; }
+        public DbSet<Orarend> Orarendek { get; set; }
+        public DbSet<Osztaly> Osztalyok { get; set; }
 
+
+        public KretaDbContext(DbContextOptions<KretaDbContext> options) : base(options) { }
     }
     public class User
     {
@@ -62,7 +72,7 @@ namespace Kreta.Persisence
         public int tantargy_id { get; set; }
     }
 
-    public class Uzenetek
+    public class Uzenet
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
