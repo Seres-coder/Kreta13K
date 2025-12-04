@@ -1,0 +1,6 @@
+@Kreta_HostAddress = http://localhost:5172
+
+GET {{Kreta_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
