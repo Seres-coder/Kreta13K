@@ -6,7 +6,7 @@ namespace Kreta.Persisence
 {
     public class KretaDbContext : DbContext
     {
-        public DbSet<User> Useres { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Tanar> Tanarok { get; set; }
         public DbSet<Diak> Diakok { get; set; }
         public DbSet<Tantargy> Tantargyok { get; set; }
@@ -43,7 +43,8 @@ namespace Kreta.Persisence
         public Tantargy Tantargy { get; set; }
 
         public string Role { get; set; } = "Tanar";
-
+        public int user_id { get; set; }
+        public User User { get; set; }
     }
 
     public class Diak
@@ -54,6 +55,9 @@ namespace Kreta.Persisence
 
         public int user_id { get; set; }
         public User User { get; set; }
+
+        public int osztaly_id { get; set; }
+        public Osztaly Osztaly { get; set; }
 
         public int tanar_id { get; set; }
         public List<Tanar> Tanar { get; set; }
