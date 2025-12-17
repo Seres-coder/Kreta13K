@@ -53,6 +53,7 @@ namespace Kreta.Persisence
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int diak_id { get; set; }
 
+        public string diak_nev { get; set; }
         public int user_id { get; set; }
         public User User { get; set; }
 
@@ -74,6 +75,7 @@ namespace Kreta.Persisence
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int tantargy_id { get; set; }
+        public string tantargy_nev { get; set; }
     }
 
     public class Uzenet
@@ -83,7 +85,10 @@ namespace Kreta.Persisence
         public int uzenet_id { get; set; }
         public string tartalom { get; set; }
         public string cim { get; set; }
-        public int user_id { get; set; }
+
+        public int fogado_id { get; set; }/*fogado user ->diak*/
+        public Diak Fogado { get; set; }
+        public int user_id { get; set; }/*küldő user ->admin vagy tanar*/
         public User User { get; set; }
 
     }
@@ -124,7 +129,9 @@ namespace Kreta.Persisence
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int osztaly_id { get; set; }
+        public string osztaly_nev { get; set; }
     }
 
 
