@@ -98,7 +98,8 @@ namespace Kreta.Persisence
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int jegy_id { get; set; }
-        public DateTime datum { get; set; }
+        public DateTimeOffset datum { get; set; }
+        public DateTimeOffset updatedatum { get; set; }
         public int ertek { get; set; }
 
         public int tantargy_id { get; set; }
