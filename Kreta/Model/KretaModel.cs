@@ -13,7 +13,7 @@ namespace Kreta.Model
             _context = context;
         }
         //Jegy beirasa
-        public void Addjegy(int _jegy_id, int _ertek, DateTime _datum)
+        public void Addjegy(int _jegy_id, int _ertek)
         {
             var jegy = _context.Jegyek.Where(x=> x.jegy_id == _jegy_id).FirstOrDefault();
             var trx = _context.Database.BeginTransaction();
@@ -22,7 +22,7 @@ namespace Kreta.Model
                 {
                     jegy_id = _jegy_id,
                     ertek = _ertek,
-                    datum = _datum
+                    datum = DateTimeOffset.UtcNow
                 });
                 _context.SaveChanges();
                 trx.Commit();
@@ -133,19 +133,22 @@ namespace Kreta.Model
             }
         }
         //Ora hozzaadasa az orarendhez
-        public void AddLesson(string _ora, DayOfWeek _nap, Osztaly _osztaly, Tantargy _tantargy, Tanar _tanar,int _orarend_id)
+        public void AddLesson(string _ora, DayOfWeek _nap, string _osztaly, string _tantargy, string _tanar)
         {
-            var lesson = _context.Orarendek.Where(x => x.orarend_id == _orarend_id).FirstOrDefault();
-            var trx = _context.Database.BeginTransaction();
+
+            using (var trx = _context.Database.BeginTransaction())
             {
                 _context.Orarendek.Add(new Orarend
                 {
                     ora = _ora,
                     nap = _nap,
-                    osztaly_id = _osztaly,
-                    tantargy_id = _tantargy,
-                    tanar_id = _tanar
+                    osztaly_id = _context.Osztalyok.Where(x => x.osztaly_nev == _osztaly).First().osztaly_id,
+                    tantargy_id = _context.Tantargyok.Where(x=> x.tantargy_nev == _tantargy).First().tantargy_id,
+                    tanar_id = _context.Tanarok.Where(x => x.tanar_nev == _tanar).First().tanar_id,
+                   
                 });
+                _context.SaveChanges();
+                trx.Commit();
             }
         }
         //Ora torlese az orarendbol
