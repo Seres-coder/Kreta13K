@@ -14,6 +14,7 @@ namespace Kreta.Persisence
         public DbSet<Jegy> Jegyek { get; set; }
         public DbSet<Orarend> Orarendek { get; set; }
         public DbSet<Osztaly> Osztalyok { get; set; }
+        public DbSet<Hianyzas> Hianyzasok { get; set; }
 
 
         public KretaDbContext(DbContextOptions<KretaDbContext> options) : base(options) { }
@@ -112,7 +113,7 @@ namespace Kreta.Persisence
         public int osztaly_id { get; set; }
         public Osztaly osztaly { get; set; }
 
-        public DateTime nap { get; set; }
+        public DayOfWeek nap { get; set; }
         public string ora { get; set; }
         public int tantargy_id { get; set; }
         public Tantargy tantargy { get; set; }
@@ -126,6 +127,14 @@ namespace Kreta.Persisence
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int osztaly_id { get; set; }
+    }
+    public class Hianyzas
+    {
+        [Key]
+        [DatabaseGenerated (DatabaseGeneratedOption.Identity)]
+        public int hianyzas_id { get; set; }
+        public int hianyzottorakszama {  get; set; }
+        
     }
 
 
