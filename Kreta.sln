@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kreta", "Kreta\Kreta.csproj", "{710AABCA-ADBC-4AC8-AFB7-045AA2A9446D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KretaTest", "KretaTest\KretaTest.csproj", "{AAF559AA-8A0F-4A90-8E7E-76E6F477DB5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{710AABCA-ADBC-4AC8-AFB7-045AA2A9446D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{710AABCA-ADBC-4AC8-AFB7-045AA2A9446D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{710AABCA-ADBC-4AC8-AFB7-045AA2A9446D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF559AA-8A0F-4A90-8E7E-76E6F477DB5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF559AA-8A0F-4A90-8E7E-76E6F477DB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF559AA-8A0F-4A90-8E7E-76E6F477DB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF559AA-8A0F-4A90-8E7E-76E6F477DB5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
