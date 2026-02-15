@@ -52,7 +52,7 @@ namespace Kreta.Controllers
         //Üzenet törlése csak Adminként 
         [Authorize(Roles = "Admin")]
         [HttpDelete("/deletemessage/{id}")]
-        public ActionResult DeleteUzenetById([FromQuery] int id)
+        public async Task<ActionResult> DeleteUzenetById([FromQuery] int id)
         {
             try
             {

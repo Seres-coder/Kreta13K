@@ -11,7 +11,7 @@ namespace Kreta.Model
             _context = context;
         }
 
-        //Üzenet küldése Tanárként vagy Adminként egy diáknak
+        #region Üzenet küldése Tanárként vagy Adminként egy diáknak
 
         public void SendUzenet(string tartalom, string cim, int fogado_id, int user_id)
         {
@@ -28,8 +28,9 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
+        #endregion
 
-        //Üzenet lekérdezése diák számára
+        #region Üzenet lekérdezése diák számára
         public IEnumerable<UzenetekDto> GetUzenetByDiakId(int diak_id)
         {
             return _context.Uzenetek.Where(x => x.fogado_id == diak_id).Select(x => new UzenetekDto
@@ -41,9 +42,10 @@ namespace Kreta.Model
                 user_id = x.user_id
             }).OrderBy(x => x.uzenet_id);
         }
+        #endregion
 
-        //Üzenet törlése csak Adminként 
-        public void DeleteUzenet(int uzenetid)
+        #region Üzenet törlése csak Adminként 
+        public async Task DeleteUzenet(int uzenetid)
         {
             if(_context.Uzenetek.Any(x => x.uzenet_id != uzenetid))
             {
@@ -56,6 +58,7 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
+        #endregion
 
     }
 }

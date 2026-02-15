@@ -103,7 +103,7 @@ namespace Kreta.Controllers
         //Diakok és Tanárok teljes törlése a felhasználó törlésével
         [Authorize(Roles = "Admin")]
         [HttpDelete("/deleteuser/{id}")]
-        public ActionResult DeleteUserController([FromQuery] int id)
+        public async Task<ActionResult> DeleteUserController([FromQuery] int id)
         {
             try
             {
@@ -191,7 +191,7 @@ namespace Kreta.Controllers
         [HttpPut("/DiakModositas")]
 
 
-        public ActionResult ModifyDiakController(int diak__id,string diak__nev,string email__cim,int jegyek__,string lakcim__,int osztaly__id,DateTime szuletesi__datum,string szulo__neve,int tanar__id)
+        public async Task<ActionResult> ModifyDiakController(int diak__id,string diak__nev,string email__cim,int jegyek__,string lakcim__,int osztaly__id,DateTime szuletesi__datum,string szulo__neve,int tanar__id)
         {
             try
             {
@@ -218,7 +218,7 @@ namespace Kreta.Controllers
         //Tanar Adatok modositása   
         [Authorize(Roles = "Admin,Tanar")]
         [HttpPut("/TanarModositas")]
-        public ActionResult ModifyTanarController(int diak__id,string szak__,int tanar__id,string tanar__nev,int tantargy__id)
+        public async Task<ActionResult> ModifyTanarController(int diak__id,string szak__,int tanar__id,string tanar__nev,int tantargy__id)
         {
             try
             {

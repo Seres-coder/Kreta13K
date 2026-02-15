@@ -12,8 +12,8 @@ namespace Kreta.Model
         {
             _context = context;
         }
-        //Jegy beirasa
-        public void Addjegy(int _jegy_id, int _ertek)
+        #region 1. Jegyek Hozzadasa
+        public async Task Addjegy(int _jegy_id, int _ertek)
         {
             var jegy = _context.Jegyek.Where(x=> x.jegy_id == _jegy_id).FirstOrDefault();
             var trx = _context.Database.BeginTransaction();
@@ -28,8 +28,10 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        //Jegy modositas
-        public void ModifyJegy(int _jegy_id, int _ertek) 
+        #endregion
+
+        #region 2. Jegyek Modositasa
+        public async Task ModifyJegy(int _jegy_id, int _ertek) 
         {
             using (var trx = _context.Database.BeginTransaction()) 
             {
@@ -39,8 +41,10 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        //Jegy torlese
-        public void DeleteJegy(int _jegy_id)
+        #endregion
+
+        #region 3. Jegyek Torlese
+        public async Task DeleteJegy(int _jegy_id)
         {
             using (var trx = _context.Database.BeginTransaction())
             {
@@ -49,22 +53,10 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        /*/ public class Uzenet
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int uzenet_id { get; set; }
-        public string tartalom { get; set; }
-        public string cim { get; set; }
-        public int user_id { get; set; }
-        public User User { get; set; }
+        #endregion
 
-    }
-        /*/
-        
-        
-        //Hianyzas hozzaadasa
-        public void AddHianyzas(int _hianyzas_id, int _hianyzottorakszama)
+        #region 4. Hianyzas Hozzadasa
+        public async Task AddHianyzas(int _hianyzas_id, int _hianyzottorakszama)
         {
             var hianyzas = _context.Hianyzasok.Where(x => x.hianyzas_id == _hianyzas_id).FirstOrDefault();
             var trx = _context.Database.BeginTransaction();
@@ -79,8 +71,10 @@ namespace Kreta.Model
             }
 
         }
-        //Hianyzasok modositasa
-        public void ModifyHianyzas(int _hianyzas_id, int _hianyzottorakszama)
+        #endregion
+
+        #region 5. Hianyzas Modositasa
+        public async Task ModifyHianyzas(int _hianyzas_id, int _hianyzottorakszama)
         {
             using (var trx = _context.Database.BeginTransaction())
             {
@@ -89,8 +83,10 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        //Hianyzas torlese
-        public void DeleteHianyzas(int _hianyzas_id) 
+        #endregion
+
+        #region 6. Hianyzas Torlese
+        public async Task DeleteHianyzas(int _hianyzas_id) 
         {
             using (var trx = _context.Database.BeginTransaction())
             {
@@ -99,21 +95,10 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        /*
-        public int orarend_id { get; set; }
-        public int osztaly_id { get; set; }
-        public Osztaly osztaly { get; set; }
+        #endregion
 
-        public DateTime nap { get; set; }
-        public string ora { get; set; }
-        public int tantargy_id { get; set; }
-        public Tantargy tantargy { get; set; }
-
-        public int tanar_id { get; set; }
-        public List<Tanar> Tanar { get; set; }
-        */
-        //Orarend hozzaadasa
-        public void AddOrarend(int _orarend_id, int _osztaly_id, Osztaly _osztaly, DayOfWeek _nap, string _ora, int _tantargy_id, List<Tanar> _Tanar)
+        #region 7. Orarend hozzadasa
+        public async Task AddOrarend(int _orarend_id, int _osztaly_id, Osztaly _osztaly, DayOfWeek _nap, string _ora, int _tantargy_id, List<Tanar> _Tanar)
         {
             var orarend = _context.Orarendek.Where(x => x.orarend_id == _orarend_id).FirstOrDefault();
             var trx = _context.Database.BeginTransaction();
@@ -132,8 +117,10 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        //Ora hozzaadasa az orarendhez
-        public void AddLesson(string _ora, DayOfWeek _nap, string _osztaly, string _tantargy, string _tanar)
+        #endregion
+
+        #region 8. Ora hozzadasa az orarendhez
+        public async Task AddLesson(string _ora, DayOfWeek _nap, string _osztaly, string _tantargy, string _tanar)
         {
 
             using (var trx = _context.Database.BeginTransaction())
@@ -151,8 +138,10 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        //Ora torlese az orarendbol
-        public void DeleteLesson(string _ora, DayOfWeek _nap) 
+        #endregion
+
+        #region Ora torlese
+        public async Task DeleteLesson(string _ora, DayOfWeek _nap) 
         {
             using (var trx = _context.Database.BeginTransaction())
             {
@@ -161,6 +150,7 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
+        #endregion
 
 
     }

@@ -15,9 +15,11 @@ namespace Kreta.Controllers
         {
             _model = model;
         }
+
+
         [Authorize(Roles = "Admin")]
-        [HttpPut("/addjegy")]
-        public ActionResult JegyBeiras(int _jegy_id, int _ertek)
+        [HttpPut("addjegy")]
+        public async Task<ActionResult> JegyBeiras(int _jegy_id, int _ertek)
         {
             try
             {
@@ -29,10 +31,12 @@ namespace Kreta.Controllers
                 return BadRequest();
             }
         }
+
+
         [Authorize(Roles = "Admin")]
-        [HttpDelete("/deletejegy/{id}")]
+        [HttpDelete("deletejegy/{id}")]
         
-        public ActionResult JegyDelete([FromQuery] int id)
+        public async Task<ActionResult> JegyDelete([FromQuery] int id)
         {
             try
             {
@@ -48,9 +52,11 @@ namespace Kreta.Controllers
                 return BadRequest();
             }
         }
+
+
         [Authorize(Roles = "Admin")]
         [HttpPut("/modifyjegy")]
-        public ActionResult ModifyJegy(int _jegy_id, int _ertek)
+        public async Task<ActionResult> ModifyJegy(int _jegy_id, int _ertek)
         {
             try
             {
@@ -66,9 +72,11 @@ namespace Kreta.Controllers
                 return NotFound();
             }
         }
+
+
         [Authorize(Roles = "Admin")]
         [HttpPut("/AddHianyzas")]
-        public ActionResult HianyzasBeiras(int _hianyzas_id, int _hianyzottorakszama)
+        public async Task<ActionResult> HianyzasBeiras(int _hianyzas_id, int _hianyzottorakszama)
         {
             try
             {
@@ -80,10 +88,12 @@ namespace Kreta.Controllers
                 return BadRequest();
             }
         }
+
+
         [Authorize(Roles = "Admin")]
         [HttpDelete("/deletehianyzas/{id}")]
 
-        public ActionResult HianyzasDelete([FromQuery] int id)
+        public async Task<ActionResult> HianyzasDelete([FromQuery] int id)
         {
             try
             {
@@ -99,9 +109,11 @@ namespace Kreta.Controllers
                 return BadRequest();
             }
         }
+
+
         [Authorize(Roles = "Admin")]
         [HttpPut("/modifyhianyzas")]
-        public ActionResult ModifyHianyzas(int _hianyzas_id, int _hianyzottorakszama)
+        public async Task<ActionResult> ModifyHianyzas(int _hianyzas_id, int _hianyzottorakszama)
         {
             try
             {
@@ -117,9 +129,11 @@ namespace Kreta.Controllers
                 return NotFound();
             }
         }
+
+
         [Authorize(Roles = "Admin")]
         [HttpPut("/addorarend")]
-        public ActionResult AddOrarend(int _orarend_id, int _osztaly_id, Osztaly _osztaly, DayOfWeek _nap, string _ora, int _tantargy_id, List<Tanar> _Tanar)
+        public async Task<ActionResult> AddOrarend(int _orarend_id, int _osztaly_id, Osztaly _osztaly, DayOfWeek _nap, string _ora, int _tantargy_id, List<Tanar> _Tanar)
         {
             try
             {
@@ -131,9 +145,11 @@ namespace Kreta.Controllers
                 return BadRequest();
             }
         }
+
+
         [Authorize(Roles = "Admin")]
         [HttpPut("/addora")]
-        public ActionResult AddLesson(string _ora, DayOfWeek _nap, Osztaly _osztaly, Tantargy _tantargy, Tanar _tanar, int _orarend_id)
+        public async Task<ActionResult> AddLesson(string _ora, DayOfWeek _nap, Osztaly _osztaly, Tantargy _tantargy, Tanar _tanar, int _orarend_id)
         {
             try
             {
@@ -145,10 +161,12 @@ namespace Kreta.Controllers
                 return BadRequest();
             }
         }
+
+
         [Authorize(Roles = "Admin")]
         [HttpDelete("/deleteora/{id}")]
 
-        public ActionResult DeleteLesson(string _ora, DayOfWeek _nap)
+        public async Task<ActionResult> DeleteLesson(string _ora, DayOfWeek _nap)
         {
             try
             {

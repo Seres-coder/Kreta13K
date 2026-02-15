@@ -14,7 +14,7 @@ namespace Kreta.Model
             _context = context;
         }
 
-        //jelszo titkositasa 
+        #region 1. Jelszo Modositasa 
         private string HashPassword(string password)
         {
             using var sha = System.Security.Cryptography.SHA256.Create();
@@ -22,8 +22,9 @@ namespace Kreta.Model
             var hash = sha.ComputeHash(bytes);
             return Convert.ToBase64String(hash);
         }
+        #endregion
 
-        //Regisztráció felhasználó létrehozásával alapbol diakkent tudsz csak regisztrálni de majd kesőbb lehet tanár is az admin segitségével
+        #region 2. Regisztráció felhasználó létrehozásával alapbol diakkent tudsz csak regisztrálni de majd kesőbb lehet tanár is az admin segitségével
         public void Registration(string name, string password, string role ="Diak")
         {
             if (_context.Users.Any(x => x.belepesnev == name))
@@ -44,8 +45,9 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
+        #endregion
 
-        //Bejelentkezés felhasználó ellenőrzéssel
+        #region Bejelentkezés felhasználó ellenőrzéssel
 
         public UserDto? ValidateUser(string name, string password,string role="Diak")
         {
@@ -59,8 +61,9 @@ namespace Kreta.Model
 
             }).FirstOrDefault();
         }
+        #endregion
 
-        // Diakok nevei,osztálya kiírása 
+        #region Diakok nevei,osztálya kiírása 
         public IEnumerable<UserDto> GetDiak()
         {
             return _context.Diakok.Include(x=> x.User).Include(x=>x.Osztaly)
@@ -68,15 +71,18 @@ namespace Kreta.Model
                 new UserDto { _belepesnev = x.User.belepesnev,_osztaly=x.Osztaly.osztaly_nev })
                 .OrderBy(x => x._belepesnev);
         }
-        // Tanarok nevei,tantargyanaj  kiírása
+        #endregion
+
+        #region Tanarok nevei,tantargyanaj  kiírása
         public IEnumerable<UserDto> GetTanar()
         {
             return _context.Tanarok.Include(x => x.User).Include(x=>x.Tantargy)
                 .Select(x => new UserDto { _belepesnev = x.User.belepesnev,_tantargy=x.Tantargy.tantargy_nev })
                 .OrderBy(x => x._belepesnev);
         }
+        #endregion
 
-        //Diakok és Tanárok teljes törlése a felhasználó törlésével
+        #region Diakok és Tanárok teljes törlése a felhasználó törlésével
         public void DeleteUser(int userId)
         {
             var trx = _context.Database.BeginTransaction();
@@ -96,7 +102,9 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        // Felhasználó diákról tanárra váltása
+        #endregion
+
+        #region Felhasználó diákról tanárra váltása
         public void PromoteToTanar(int userId,string tantargy)
         {
             var trx = _context.Database.BeginTransaction();
@@ -116,7 +124,9 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        //Diak és tanár jelszó váltás
+        #endregion
+
+        #region Diak és tanár jelszó váltás
         public void ChangePassword(int userId, string ujjelszo)
         {
             var trx = _context.Database.BeginTransaction();
@@ -126,7 +136,9 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        //Diak profil teljes listázása
+        #endregion
+
+        #region Diak profil teljes listázása
         public IEnumerable<DiakListDto> GetFullListDiak()
         {
             return _context.Diakok.Select(x=> new DiakListDto
@@ -141,7 +153,9 @@ namespace Kreta.Model
                 _jegyek = x.jegyek,
             }).OrderBy(x => x._diak_nev);
         }
-        //Tanar profil teljes listázása
+        #endregion
+
+        #region Tanar profil teljes listázása
         public IEnumerable<TanarListDto> GetFullListTanar()
         {
             return _context.Tanarok.Select(x => new TanarListDto
@@ -153,10 +167,11 @@ namespace Kreta.Model
                 _tantargy_id = x.tantargy_id,
             }).OrderBy(x => x._tanar_nev);
         }
+        #endregion
 
-        //Diak Adatok modositása
+        #region Diak Adatok modositása
 
-        public void ModifyDiak(ModifyDiakDto dto)
+        public async Task ModifyDiak(ModifyDiakDto dto)
         {
             var trx = _context.Database.BeginTransaction();
             {
@@ -170,8 +185,10 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
-        //Tanar Adatok modositása   
-        public void ModifyTanar(ModifyTanarDto dto)
+        #endregion
+
+        #region Tanar Adatok modositása   
+        public async Task ModifyTanar(ModifyTanarDto dto)
         {
             var trx = _context.Database.BeginTransaction();
             {
@@ -182,6 +199,7 @@ namespace Kreta.Model
                 trx.Commit();
             }
         }
+        #endregion
     }
 
 }
